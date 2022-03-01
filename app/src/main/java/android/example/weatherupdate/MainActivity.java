@@ -95,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
                                 + "\n Cloudiness: " + clouds + "%"
                                 + "\n Pressure: " + pressure + " hPa";
 
-                        tvResult.setText(output);
+                        //tvResult.setText(output);
+                        tvResult.setText("Loading");
 
                         intent.putExtra(CITY_NAME, output);
                         startActivity(intent);
