@@ -28,6 +28,20 @@ public class MainActivity extends AppCompatActivity {
     EditText etCity, etCountry;
     TextView tvResult;
 
+    // BEGINNING OF CHANGES
+    public static final String COUNTRY_NAME = "android.example.com.activities.extra.COUNTRY_NAME";
+    public static final String TEMP = "android.example.com.activities.extra.TEMP";
+    public static final String HUMIDITY = "android.example.com.activities.extra.HUMIDITY";
+    public static final String DESCRIPTION = "android.example.com.activities.extra.DESCRIPTION";
+    public static final String WIND_SPEED = "android.example.com.activities.extra.WIND_SPEED";
+    public static final String CLOUD_COVERAGE = "android.example.com.activities.extra.CLOUD_COVERAGE";
+    public static final String PRESSURE = "android.example.com.activities.extra.PRESSURE";
+
+
+    // END OF CHANGES
+
+
+
     public static final String CITY_NAME = "android.example.com.activities.extra.CITY_NAME";
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
     private final String appid = "1b79bf73d3b4001b6fbc49847ec98423"; //last digit is actually 3
@@ -97,8 +111,23 @@ public class MainActivity extends AppCompatActivity {
 
                         //tvResult.setText(output);
                         tvResult.setText("Loading");
+                        // CHANGED BELOW
+                        //intent.putExtra(CITY_NAME, output);
 
-                        intent.putExtra(CITY_NAME, output);
+                        // BEGIN CHANGES
+                        intent.putExtra(CITY_NAME, cityName);
+                        intent.putExtra(COUNTRY_NAME, countryName);
+                        intent.putExtra(TEMP, df.format(temp));
+                        intent.putExtra(HUMIDITY, String.valueOf(humidity));
+                        intent.putExtra(DESCRIPTION, description);
+                        intent.putExtra(WIND_SPEED, wind);
+                        intent.putExtra(CLOUD_COVERAGE, clouds);
+                        intent.putExtra(PRESSURE, String.valueOf(pressure));
+                        // END CHANGES
+
+
+
+
                         startActivity(intent);
 
 

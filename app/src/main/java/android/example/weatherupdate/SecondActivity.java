@@ -14,10 +14,37 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         Intent intent = getIntent();
-        String message =
-                intent.getStringExtra(MainActivity.CITY_NAME);
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(message);
+
+        // changed message to cityName
+        // BEGINNING OF CHANGES
+        String cityName = intent.getStringExtra(MainActivity.CITY_NAME);
+        String countryName = intent.getStringExtra(MainActivity.COUNTRY_NAME);
+        String temp = intent.getStringExtra(MainActivity.TEMP);
+        String humidity = intent.getStringExtra(MainActivity.HUMIDITY);
+        String description = intent.getStringExtra(MainActivity.DESCRIPTION);
+        String windSpeed = intent.getStringExtra(MainActivity.WIND_SPEED);
+        String cloudCoverage = intent.getStringExtra(MainActivity.CLOUD_COVERAGE);
+        String pressure = intent.getStringExtra(MainActivity.PRESSURE);
+
+
+        TextView tvCityName = (TextView) findViewById(R.id.tvCityName);
+        TextView tvCountryName = (TextView) findViewById(R.id.tvCountryName);
+        TextView tvTemp = (TextView) findViewById(R.id.tvTemp);
+        TextView tvHumidity = (TextView) findViewById(R.id.tvHumidity);
+        TextView tvDescription = (TextView) findViewById(R.id.tvDescription);
+        TextView tvCloudCover = (TextView) findViewById(R.id.tvCloudCover);
+        TextView tvWindSpeed = (TextView) findViewById(R.id.tvWindSpeed);
+        TextView tvPressure = (TextView) findViewById(R.id.tvPressure);
+
+        tvCityName.setText(cityName);
+        tvCountryName.setText(countryName);
+        tvTemp.setText(temp + " *C");
+        tvHumidity.setText(humidity + "%");
+        tvDescription.setText(description);
+        tvCloudCover.setText(cloudCoverage + "%");
+        tvWindSpeed.setText(windSpeed + "m/s");
+        tvPressure.setText(pressure + "hPa");
+
     }
 
     public void onSecondClick(View view) {
