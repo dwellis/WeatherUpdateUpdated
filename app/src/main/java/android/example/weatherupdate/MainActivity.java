@@ -2,6 +2,7 @@ package android.example.weatherupdate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,8 +27,10 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity {
     EditText etCity, etCountry;
     TextView tvResult;
+
+    public static final String CITY_NAME = "android.example.com.activities.extra.CITY_NAME";
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
-    private final String appid = "1b79bf73d3b4001b6fbc49847ec98429"; //last digit is actually 3
+    private final String appid = "1b79bf73d3b4001b6fbc49847ec98423"; //last digit is actually 3
     DecimalFormat df = new DecimalFormat("#.##");
 
     @Override
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getWeatherDetails(View view) {
+        Intent intent = new Intent(this, SecondActivity.class);
         String tempUrl = "";
         String city = etCity.getText().toString().trim();
         String country = etCountry.getText().toString().trim();
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     Log.d("response", response);
                     String output = "";
+
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         JSONArray jsonArray = jsonResponse.getJSONArray("weather");
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         String countryName = jsonObjectSys.getString("country");
                         String cityName = jsonResponse.getString("name");
 
+
                         //tvResult.setTextColor(Color.rgb(68, 134, 199));
 
                         output += "Current Weather of " + cityName + " (" + countryName + ")"
@@ -90,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
                                 + "\n Pressure: " + pressure + " hPa";
 
                         tvResult.setText(output);
+
+                        intent.putExtra(CITY_NAME, output);
+                        startActivity(intent);
+
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -104,5 +115,7 @@ public class MainActivity extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
             requestQueue.add(stringRequest);
         }
+
+
     }
 }
