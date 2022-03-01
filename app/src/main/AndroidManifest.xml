@@ -14,9 +14,14 @@
         android:theme="@style/Theme.WeatherUpdate"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ActivityResources"
+            android:exported="true"
+            android:parentActivityName=".SecondActivity"/>
+
+        <activity
             android:name=".SecondActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
